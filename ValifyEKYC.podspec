@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
     s.name              = 'ValifyEKYC'
-    s.version           = '1.2.1'
+    s.version           = '1.2.2'
     s.summary           = 'ValifyEKYC'
     s.homepage          = 'http://www.valify.me/'
 
