@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ValifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="emf-AC-ZHo">
+                                <rect key="frame" x="0.0" y="44" width="414" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="yH5-ox-Y8L"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LT4-FB-PZX">
+                                <rect key="frame" x="16" y="79" width="383" height="50"/>
+                                <color key="backgroundColor" red="0.3294117647" green="0.75686274509999996" blue="0.74117647060000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="az4-qH-euz"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Front Capture"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="autoJumpingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0iN-BP-ksd"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pi-Km-5vt">
+                                <rect key="frame" x="16" y="154" width="382" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="eWe-uQ-NgJ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2R-Hg-Fv9">
+                                <rect key="frame" x="16" y="175" width="382" height="50"/>
+                                <color key="backgroundColor" red="0.3294117647" green="0.75686274509999996" blue="0.74117647060000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0nZ-wM-aUF"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back Capture"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="autoMovingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NFu-Hg-qZx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="emf-AC-ZHo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Krs-3Y-JGK"/>
+                            <constraint firstItem="emf-AC-ZHo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LS0-Ki-lzB"/>
+                            <constraint firstItem="U2R-Hg-Fv9" firstAttribute="top" secondItem="9Pi-Km-5vt" secondAttribute="bottom" constant="20" id="OK4-SR-816"/>
+                            <constraint firstItem="LT4-FB-PZX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Opn-7j-qin"/>
+                            <constraint firstItem="LT4-FB-PZX" firstAttribute="top" secondItem="emf-AC-ZHo" secondAttribute="bottom" constant="30" id="Tba-0B-bU0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Pi-Km-5vt" secondAttribute="trailing" constant="16" id="Wez-a4-DCs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="emf-AC-ZHo" secondAttribute="trailing" id="Y2y-n9-tmT"/>
+                            <constraint firstItem="9Pi-Km-5vt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bgT-7M-t3p"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U2R-Hg-Fv9" secondAttribute="trailing" constant="16" id="fi3-od-XBw"/>
+                            <constraint firstItem="U2R-Hg-Fv9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="iG5-Kj-WT1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LT4-FB-PZX" secondAttribute="trailing" constant="15" id="mE3-9D-jyd"/>
+                            <constraint firstItem="9Pi-Km-5vt" firstAttribute="top" secondItem="LT4-FB-PZX" secondAttribute="bottom" constant="25" id="yfL-FS-U2h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="userImageView" destination="emf-AC-ZHo" id="W20-Zr-aau"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-300" y="8"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ccJ-7Z-Chk">
+            <objects>
+                <viewController id="9tP-Ga-Woa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OlP-yT-UFB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="valify-splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="D8v-g4-Wh7">
+                                <rect key="frame" x="87" y="333" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="FGZ-QV-dYr"/>
+                                    <constraint firstAttribute="width" constant="240" id="gzm-Og-2cS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watermark App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4BQ-xw-wDS">
+                                <rect key="frame" x="16" y="803" width="382" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oST-gX-fgx"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4BQ-xw-wDS" secondAttribute="trailing" constant="16" id="AVg-qj-VJa"/>
+                            <constraint firstItem="D8v-g4-Wh7" firstAttribute="centerX" secondItem="oST-gX-fgx" secondAttribute="centerX" id="Rmc-wz-hKF"/>
+                            <constraint firstItem="4BQ-xw-wDS" firstAttribute="leading" secondItem="oST-gX-fgx" secondAttribute="leading" constant="16" id="azj-dp-im1"/>
+                            <constraint firstItem="D8v-g4-Wh7" firstAttribute="centerY" secondItem="oST-gX-fgx" secondAttribute="centerY" id="hoZ-L9-uo1"/>
+                            <constraint firstItem="oST-gX-fgx" firstAttribute="bottom" secondItem="4BQ-xw-wDS" secondAttribute="bottom" constant="30" id="oFY-aH-9C3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6M-iY-eo0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="707" y="24"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="valify-splash-logo" width="190.5" height="149.5"/>
+    </resources>
+</document>
