@@ -15,7 +15,6 @@ class CameraViewModel{
     var captureSession:BehaviorRelay<AVCaptureSession> = BehaviorRelay(value: AVCaptureSession())
     var sessionQueue :BehaviorRelay<DispatchQueue> = BehaviorRelay(value: DispatchQueue(label: Constant.sessionQueueLabel))
     var previewOverlayImage : BehaviorRelay<UIImage> = BehaviorRelay(value: UIImage())
-    var cameraDevice :AVCaptureDevice?
     
     func getImageFromSampleBuffer (buffer:CMSampleBuffer) -> UIImage? {
         if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
@@ -36,7 +35,6 @@ class CameraViewModel{
                 print("Self is nil!")
                 return
             }
-            strongSelf.captureSession.value.sessionPreset = .hd1920x1080
             strongSelf.captureSession.value.startRunning()
         }
     }
@@ -54,29 +52,17 @@ class CameraViewModel{
     func captureDevice(forPosition position: AVCaptureDevice.Position) -> AVCaptureDevice? {
         if #available(iOS 10.0, *) {
             let discoverySession = AVCaptureDevice.DiscoverySession(
-                deviceTypes: [.builtInDualCamera,.builtInWideAngleCamera,.builtInTrueDepthCamera],
+                deviceTypes: [.builtInWideAngleCamera],
                 mediaType: .video,
-                position: .back
+                position: .unspecified
             )
-            let device =  discoverySession.devices.first { $0.position == position }
-            try? device?.lockForConfiguration()
-//            try? device?.setTorchModeOn(level: 1.0)
-            device?.isSubjectAreaChangeMonitoringEnabled = true
-            device?.focusMode = .continuousAutoFocus
-            device?.exposureMode = .continuousAutoExposure
-            device?.unlockForConfiguration()
-            return device
+            return discoverySession.devices.first { $0.position == position }
         }
         return nil
     }
     
-    
-
-    
     func setUpCaptureSessionOutput(delegate:AVCaptureVideoDataOutputSampleBufferDelegate) {
-        
         sessionQueue.value.async {
-            
             self.captureSession.value.beginConfiguration()
             self.captureSession.value.sessionPreset = AVCaptureSession.Preset.medium
             
@@ -93,76 +79,31 @@ class CameraViewModel{
             }
             self.captureSession.value.addOutput(output)
             self.captureSession.value.commitConfiguration()
-            
-            
-            
-//            self.openTorch()
-            
-//            let avDevice = AVCaptureDevice.default(for: AVMediaType.video)
-//            try avDevice?.lockForConfiguration()
-//            avDevice?.focusMode = .continuousAutoFocus
-//            avDevice?.setTorchModeOn(level: 1.0)
-//            avDevice?.unlockForConfiguration()
-//            device.focusMode = .continuousAutoFocus
-//            device.exposureMode = .continuousAutoExposure
-           
         }
     }
     
-    
-    
-    func setTorch(){
-//        let cameraPosition: AVCaptureDevice.Position = .back
-//        guard let device = self.captureDevice(forPosition: cameraPosition) else {
-//            print("Failed to get capture device for camera position: \(cameraPosition)")
-//            return
-//        }
-        try? cameraDevice?.lockForConfiguration()
-        try? cameraDevice?.setTorchModeOn(level: 1.0)
-        cameraDevice?.isSubjectAreaChangeMonitoringEnabled = true
-        cameraDevice?.focusMode = .continuousAutoFocus
-        cameraDevice?.exposureMode = .continuousAutoExposure
-        cameraDevice?.unlockForConfiguration()
-    }
-    
-    func turnOffTourch(completion: (_ success: Bool) -> Void){
-        try? cameraDevice?.lockForConfiguration()
-        cameraDevice?.torchMode = .off
-        cameraDevice?.unlockForConfiguration()
-        completion(true)
-    }
-    
     func setUpCaptureSessionInput() {
-        sessionQueue.value.async { [unowned self] in
+        sessionQueue.value.async {
             
-            let cameraPosition: AVCaptureDevice.Position = .back
-            
+            let cameraPosition: AVCaptureDevice.Position = .front
             guard let device = self.captureDevice(forPosition: cameraPosition) else {
                 print("Failed to get capture device for camera position: \(cameraPosition)")
                 return
             }
-            cameraDevice = device
             do {
-                
-//
                 self.captureSession.value.beginConfiguration()
-                
                 let currentInputs = self.captureSession.value.inputs
                 for input in currentInputs {
                     self.captureSession.value.removeInput(input)
                 }
                 
-                let input = try AVCaptureDeviceInput(device: cameraDevice!)
+                let input = try AVCaptureDeviceInput(device: device)
                 guard self.captureSession.value.canAddInput(input) else {
                     print("Failed to add capture session input.")
                     return
                 }
-                
                 self.captureSession.value.addInput(input)
                 self.captureSession.value.commitConfiguration()
-//                self.setTorch()
-                
-               
             } catch {
                 print("Failed to create capture device input: \(error.localizedDescription)")
             }
@@ -184,14 +125,10 @@ class CameraViewModel{
         guard let imageBuffer = imageBuffer else {
             return
         }
-//        setTorch()
-        let orientation: UIImage.Orientation =  .right
+        let orientation: UIImage.Orientation =  .leftMirrored
         let image = UIUtilities.createUIImage(from: imageBuffer, orientation: orientation) ?? UIImage()
-//        image.fra
         previewOverlayImage.accept(image)
     }
-    
-
     
     
     

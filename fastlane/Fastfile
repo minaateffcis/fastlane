@@ -20,13 +20,25 @@ platform :ios do
   lane :install_certs do
     match(type:"adhoc", app_identifier: "me.valify.ValifyWatermarkApp")
   end
-podspec_name = "ValifyEKYC.podspec"
+podspec_name = "ValifyEKYCM.podspec"
   desc "Releases a new version automatically"
   lane :release do
     #pod_lib_lint
     version = version_bump_podspec(path: podspec_name)
     git_add(path: podspec_name)
     git_commit(path: [podspec_name],
+               message: "#{version} release")
+    add_git_tag(tag: "#{version}")
+    push_to_git_remote
+    pod_push
+  end
+
+xcframework_name = "testtask.xcframework"
+  desc "make xcframework"
+  lane :make_xcframework do
+    create_xcframework(frameworks: ['Valify.framework'], output:'testtask.xcframework')
+    git_add(path: xcframework_name)
+    git_commit(path: [xcframework_name],
                message: "#{version} release")
     add_git_tag(tag: "#{version}")
     push_to_git_remote

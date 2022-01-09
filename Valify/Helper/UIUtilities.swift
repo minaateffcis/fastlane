@@ -15,7 +15,7 @@
 //
 
 import AVFoundation
-//import MLKit
+import MLKit
 import UIKit
 
 /// Defines UI-related utilitiy methods for vision detection.
@@ -125,17 +125,8 @@ public class UIUtilities {
     let ciImage = CIImage(cvPixelBuffer: imageBuffer)
     let context = CIContext(options: nil)
     guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return nil }
-      return UIImage(cgImage: cgImage, scale: Constants.originalScale, orientation: orientation)
+    return UIImage(cgImage: cgImage, scale: Constants.originalScale, orientation: orientation)
   }
-    
-    public static func createUIImage(
-      from imageBuffer: CVImageBuffer
-    ) -> UIImage? {
-      let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-      let context = CIContext(options: nil)
-      guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return nil }
-        return UIImage(cgImage: cgImage)
-    }
 
   private static func currentUIOrientation() -> UIDeviceOrientation {
     let deviceOrientation = { () -> UIDeviceOrientation in

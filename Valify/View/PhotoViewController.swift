@@ -2,7 +2,7 @@
 import UIKit
 
 public protocol ValifyImageDelegate {
-    func restartWatermark(watermarkType:WatermarkType?)
+    func retriveImage(image:UIImage)
     
 }
 
@@ -18,7 +18,7 @@ public class PhotoViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func approvePressed(_ sender: Any) {
-//        ValifyInit.shared.delegate?.restartWatermark(watermarkType: image ?? UIImage())
+        ValifyInit.shared.delegate?.retriveImage(image: image ?? UIImage())
         let root = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
         root?.dismiss(animated: true, completion: nil)
 
